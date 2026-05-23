@@ -1,8 +1,8 @@
+from agent import generate_hint_for_word
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
-import random
-from database import init_db, get_words
+from database import init_db
 
 
 
@@ -28,9 +28,6 @@ def read_root():
     return {"message": "Welcome to the Word Wits API!"}
 
 @app.get("/api/word")
-def get_random_word():
-    words = get_words()
-    if not words:
-        return {"error": "No words available"}
+def get_random_word_with_hint():
 
-    return random.choice(words)
+    return generate_hint_for_word()
