@@ -1,4 +1,5 @@
-// Offline demo fallback dictionary of interesting 5-letter words with descriptions
+import wordsWITHhints from "./word.json"
+
 const DEMO_WORDS = [
   { word: "PIXEL", hint: "The smallest single addressable element in a digital image." },
   { word: "SPACE", hint: "The boundless three-dimensional extent in which objects and events have relative position and direction." },
@@ -54,12 +55,6 @@ const DEMO_WORDS = [
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_API;
 
-/**
- * Fetches a random 5-letter word and hint from the backend.
- * Falls back gracefully to the local dictionary if the server is offline.
- * 
- * @returns {Promise<{ word: string, hint: string, isDemo: boolean }>}
- */
 export async function fetchWordFromBackend() {
   try {
 
@@ -92,7 +87,7 @@ export async function fetchWordFromBackend() {
 
     // Choose a random item from the list
     const randomIndex = Math.floor(Math.random() * DEMO_WORDS.length);
-    const demoItem = DEMO_WORDS[randomIndex];
+    const demoItem = wordsWITHhints[randomIndex];
 
     return {
       word: demoItem.word.toUpperCase(),
