@@ -1,5 +1,6 @@
 fastapi
 uvicorn
-
 pymongo
 dotenv
+langchain-google-genai
+langchain-core
